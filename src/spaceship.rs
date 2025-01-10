@@ -28,13 +28,12 @@ fn spawn_spaceship(mut commands: Commands, asset_server: Res<AssetServer>) {
     //         value: Vec3::new(0., 0., 0.),
     //     },
     // ));
-    // let model_scene = asset_server.load(GltfAssetLabel::Scene(0).from_asset("Spaceship.glb"));
+    let model_scene = asset_server.load(GltfAssetLabel::Scene(0).from_asset("Spaceship.glb"));
     commands.spawn(SpaceshipBundle {
         velocity: Velocity {
             value: STARTING_VELOCITY,
         },
-        model: SceneRoot(asset_server.load("Spaceship.glb#Scene0")),
-        // model: SceneRoot(model_scene),
+        model: SceneRoot(model_scene),
         transform: Transform::from_translation(STARTING_TRANSLATION),
     });
 }

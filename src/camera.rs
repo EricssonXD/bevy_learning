@@ -9,11 +9,12 @@ impl Plugin for CameraPlugin {
         app.add_systems(Startup, spawn_camera);
     }
 }
-
+    
 fn spawn_camera(mut commands: Commands) {
-    commands.spawn(Camera3dBundle {
-        transform: Transform::from_xyz(0., CAMERA_DISTANCE,0. )
-            .looking_at(Vec3::ZERO, Vec3::Z),
-        ..default()
-    });
+    commands.spawn((
+        Camera3d{
+            ..Default::default()
+        },
+        Transform::from_xyz(0., CAMERA_DISTANCE, 0.).looking_at(Vec3::ZERO, Vec3::Z),
+    ));
 }
