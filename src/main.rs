@@ -1,13 +1,12 @@
+mod asset_loader;
+mod asteroids;
+mod camera;
 mod debug;
+mod despawn;
 mod movement;
 mod spaceship;
-mod camera;
-mod asteroids;
-mod asset_loader;
-
 
 use bevy::prelude::*;
-
 
 fn main() {
     App::new()
@@ -24,10 +23,6 @@ fn main() {
         .add_plugins(movement::MovementPlugin)
         .add_plugins(debug::DebugPlugin)
         .add_plugins(asteroids::AsteriodPlugin)
+        .add_plugins(despawn::DespawnPlugin)
         .run();
 }
-
-
-
-
-
