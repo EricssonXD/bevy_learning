@@ -3,6 +3,8 @@ mod movement;
 mod spaceship;
 mod camera;
 mod asteroids;
+mod asset_loader;
+
 
 use bevy::prelude::*;
 
@@ -16,6 +18,7 @@ fn main() {
         })
         .add_plugins(DefaultPlugins)
         // Custom plugins
+        .add_plugins(asset_loader::AssetLoaderPlugin)
         .add_plugins(spaceship::SpaceShipPlugin)
         .add_plugins(camera::CameraPlugin)
         .add_plugins(movement::MovementPlugin)

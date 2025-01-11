@@ -3,7 +3,7 @@ use std::ops::Range;
 use bevy::prelude::*;
 use rand::Rng;
 
-use crate::movement::{Acceleration, MovingObjectBundle, Velocity};
+use crate::{asset_loader::SceneAssets, movement::{Acceleration, MovingObjectBundle, Velocity}};
 
 const SPAWN_RANGE_X: Range<f32> = -25.0..25.0;
 const SPAWN_RANGE_Z: Range<f32> = 0.0..25.0;
@@ -34,7 +34,7 @@ fn spawn_asteroid(
     mut commands: Commands,
     time: Res<Time>,
     mut spawn_timer: ResMut<SpawnTimer>,
-    asset_server: Res<AssetServer>,
+    asset_server: Res<SceneAssets>,
 ) {
     spawn_timer.timer.tick(time.delta());
     if !spawn_timer.timer.just_finished() {
@@ -60,7 +60,7 @@ fn spawn_asteroid(
             velocity: Velocity::new(velocity),
             acceleration: Acceleration::new(acceleration),
             model: SceneRoot(
-                asset_server.load(GltfAssetLabel::Scene(0).from_asset("Planet-4NxxeyYMPJ.glb")),
+                asset_server.asteroid.clone(),
             ),
             transform: Transform::from_translation(translation),
         },
