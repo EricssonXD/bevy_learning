@@ -1,16 +1,9 @@
 use bevy::prelude::*;
 
-use crate::movement::Velocity;
+use crate::movement::{Acceleration, MovingObjectBundle, Velocity};
 
 const STARTING_TRANSLATION: Vec3 = Vec3::new(0., 0., -20.);
 const STARTING_VELOCITY: Vec3 = Vec3::new(0., 0., 1.);
-
-#[derive(Bundle)]
-struct SpaceshipBundle {
-    velocity: Velocity,
-    model: SceneRoot,
-    transform: Transform,
-}
 
 pub struct SpaceShipPlugin;
 
@@ -29,10 +22,11 @@ fn spawn_spaceship(mut commands: Commands, asset_server: Res<AssetServer>) {
     //     },
     // ));
     let model_scene = asset_server.load(GltfAssetLabel::Scene(0).from_asset("Spaceship.glb"));
-    commands.spawn(SpaceshipBundle {
+    commands.spawn(MovingObjectBundle {
         velocity: Velocity {
             value: STARTING_VELOCITY,
         },
+        acceleration: Acceleration::new(Vec3::ZERO),
         model: SceneRoot(model_scene),
         transform: Transform::from_translation(STARTING_TRANSLATION),
     });

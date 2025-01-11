@@ -4,7 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = "0.15.1"
+# bevy = "0.15.1"
+bevy = { version = "0.15.1", features = ["dynamic_linking"] }
+rand = "0.8.5"
 
 # Enable more optimization in the release profile at the cost of compile time.
 [profile.release]
